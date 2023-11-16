@@ -9,3 +9,11 @@ def test_skipped1():
 @pytest.mark.skip
 def test_skipped2():
     pass
+
+@pytest.mark.skip
+def test_skipped3():
+    pass
+
+@pytest.mark.skip
+def test_skipped4():
+    pass
