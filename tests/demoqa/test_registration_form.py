@@ -1,5 +1,5 @@
 import os
-
+import allure
 from selene import browser, have, be
 
 
