@@ -84,3 +84,4 @@ def test_fill_registration_form():
     attach.add_html(browser)
     attach.add_logs(browser)
     attach.add_screenshot(browser)
+    attach.add_video(browser)
