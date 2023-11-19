@@ -7,12 +7,24 @@ from selene import Browser, Config
 from utils import attach
 
 
+def pytest_addoption(parser):
+    parser.addoption(
+        '--browser_version',
+        default='100.0'
+    )
+
+@pytest.fixture(scope='session')
+def browser_name(request):
+    return request.config.getoption('--browser')
+
+
 @pytest.fixture(scope='session', autouse=True)
-def setup_chrome():
+def setup_browser(request):
+    browser_version = request.config.getoption('--browser_version')
     options = Options()
     selenoid_capabilities = {
-        "browserName": "chrome",
-        "browserVersion": "100.0",
+        "browserName": 'chrome',
+        "browserVersion": browser_version,
         "selenoid:options": {
             "enableVNC": True,
             "enableVideo": True
