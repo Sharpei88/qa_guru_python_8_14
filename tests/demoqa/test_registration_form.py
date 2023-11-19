@@ -2,35 +2,12 @@ import os
 import allure
 from selene import have, be
 from selene.support.shared import browser
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-
-from utils import attach
-
 
 @allure.title('Successful fill form')
 def test_fill_registration_form():
-    options = Options()
-    selenoid_capabilities = {
-        "browserName": "chrome",
-        "browserVersion": "100.0",
-        "selenoid:options": {
-            "enableVNC": True,
-            "enableVideo": True
-        }
-    }
-    options.capabilities.update(selenoid_capabilities)
-
-    driver = webdriver.Remote(
-        command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
-        options=options)
-    browser.config.driver = driver
 
     with allure.step('Open registration form'):
-        browser.config.window_width = 1530
-        browser.config.window_height = 900
         browser.open('https://demoqa.com/automation-practice-form')
-
 
     with allure.step('Fill the form'):
         browser.element('#firstName').should(be.blank).type('Vitalii')
@@ -80,8 +57,3 @@ def test_fill_registration_form():
         browser.element('tbody').all('tr')[7].should(have.text('23.jpg'))
         browser.element('tbody').all('tr')[8].should(have.text('Long address for checking the address entry form and entering it into the test with line breaks'))
         browser.element('tbody').all('tr')[9].should(have.text('Haryana Karnal'))
-
-    attach.add_html(browser)
-    attach.add_logs(browser)
-    attach.add_screenshot(browser)
-    attach.add_video(browser)
