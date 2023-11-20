@@ -1,10 +1,10 @@
 import os
 import allure
 from selene import have, be
-from selene.support.shared import browser
 
 @allure.title('Successful fill form')
-def test_fill_registration_form():
+def test_fill_registration_form(setup_browser):
+    browser = setup_browser
 
     with allure.step('Open registration form'):
         browser.open('https://demoqa.com/automation-practice-form')
