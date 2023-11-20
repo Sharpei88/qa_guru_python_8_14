@@ -41,8 +41,9 @@ def setup_browser(request):
 
     driver = webdriver.Remote(
         command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
-        options=options)
-
+        options=options
+    )
+    driver.set_window_size(1920, 1080)
     browser = Browser(Config(driver=driver))
 
     yield browser
